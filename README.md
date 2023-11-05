@@ -67,7 +67,30 @@ export class HeaderComponent {
 
 My code is broken somewhere so calling in to help!  called in and zelda helped me!
 
+Video 5 Fetching Recipes
+-here we can go back to the new data storage service we made where we will first create a new method caled "fetchRecipes" where we will call on the http url get with a angled bracket of <Recipe[] > so that Angular knows our response will resemb;e our recipes array model which we now also have to import. and it pulls data from our firebase URL/recipes.json, 
 
+Datastorage service
+================
+  fetchRecipes() {
+    this.http.get<Recipe[]>('https://ng-course-recipe-book-d1c89-default-rtdb.firebaseio.com/recipes.json')
+    .subscribe(recipes => {
+      this.recipeService.setRecipes(recipes);
+    })
+  }
+
+and we also subscribe right after that and pass recipes => amd  this.recipeService.setRecipes(recipe) which we created in the recipe service. 
+  Recipe Service
+  ============
+ setRecipes(recipes:Recipe[]) {
+    this.recipes= recipes;
+    this.recipesChanged.next(this.recipes.slice())
+  }
+
+
+
+
+and we also subscribe right after that and pass recipes => amd  this.recipeService.setRecipes(recipe) which we created in the recipe service. 
 
 
 
