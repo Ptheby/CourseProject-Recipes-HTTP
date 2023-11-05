@@ -94,9 +94,23 @@ and we also subscribe right after that and pass recipes => amd  this.recipeServi
 
 
 
+Video 6- Transforming Response Data
+Here we start by cleaning up some code we dont need like the private recipes in the recipes service and then we initialize a blank private recipes:Recipe[]=[]; so that it wont break our code. Then we put a pipe on the get method in our data storage service and map it.  Unsure exactly how this works for now with map and other map but it allows our recipes to still work without an ingredient.
 
+fetchRecipes() {
+    this.http.get<Recipe[]>('https://ng-course-recipe-book-d1c89-default-rtdb.firebaseio.com/recipes.json')
+    .pipe(map(recipes => {
+      return recipes.map(recipe => {
+        return {...recipe, ingredients:recipe.ingredients ? recipe.ingredients: []};
+      });
+    }))
+    .subscribe(recipes => {
+      this.recipeService.s
 
+Video 7- Resolving Data Before Loading
 
+Having to rush through right now but my code works. Read up on REsolvers- alot of complicated code is what it looks like
 
-
+Video 8- Fixing a bug with the resolver
+--rushed through and works. Made changes to resolver to fix a bug 
 
